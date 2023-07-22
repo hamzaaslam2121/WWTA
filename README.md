@@ -7,7 +7,7 @@ Created with Flask and React
 * Backend: Flask
 * Frontend: React with react-bootstrap and react-icons for styling
 
-## Contributing
+## Contributing  
 Don't hesitate to e-mail or PM me with requests, queries and suggestions.
 If you would like to work on the frontend design, to make something more visually appealing, or to develop an alternative frontend for mobile using React Native, please get in touch!
 
