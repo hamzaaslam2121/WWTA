@@ -5,7 +5,7 @@ Created with Flask and React
 
 ## Technology 
 * Backend: Flask
-* Frontend: React with react-bootstrap and react-icons for styling
+* Frontend: React 
 
 ## Contributing  
 Don't hesitate to e-mail or PM me with requests, queries and suggestions.
