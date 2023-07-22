@@ -1,30 +1,15 @@
 import React, {useState, useEffect} from "react";
 
-function App() {
-  const [data, setData] = useState([{}])
+const App = () => {
 
-  useEffect(() => {
-      fetch("/").then(
-         res => res.json()
-      ).then(
-          data => {
-              setData(data)
-              console.log(data)
-          }
-      )
-  }, [])
-
-    return (
-        <div>
-            {(typeof data.members === 'undefined') ? (
-              <p>Loading...</p>
-            ): (
-              data.members.map((member, i) => (
-                  <p key={i}>{member}</p>
-              ))
-            )}
-        </div>
-    )
+	return (
+		<div 
+			className='map-container' style={{ height: '94vh', width: '100%' }}>
+				{localStorage.getItem('splashScreenDismissed') ? null : <SplashScreenModal/>}
+				<Outlet/>
+				<SimpleMap/>
+			</div>
+	)
 }
 
 export default App
