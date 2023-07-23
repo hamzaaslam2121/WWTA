@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 import './map.css'
 
@@ -6,14 +6,17 @@ const Map = () => {
     const { isLoaded } = useLoadScript({
       googleMapsApiKey: process.env.AIzaSyB_gADBq2dJuxcRKDwv8_N1b7CAFaQ5IY8,
     });
-    const center = useMemo(() => ({ lat: 18.52043, lng: 73.856743 }), []);
+    const center = useMemo(() => ({ lat: 51.4769, lng: 0.0005 }), []);
   
     const onLoad = (map) => {
-        const bounds = new google.maps.LatLngBounds();
+        const bounds = new window.google.maps.LatLngBounds();
         markers?.forEach(({ lat, lng }) => bounds.extend({ lat, lng }));
         map.fitBounds(bounds);
       };
-
+    
+    const markers = [{ lat: 51.4769, lng: 0.0005 },
+                    { lat: 51.4769, lng: 0.0005 },
+                    { lat: 51.4769, lng: 0.0005 }]
 
     return (
       <div className="App">
@@ -26,7 +29,7 @@ const Map = () => {
             zoom={50}
             onLoad={onLoad}>
           {markers.map(({ lat, lng }) => (
-            <Marker position={{ lat, lng }} />
+          <Marker position={{ lat: 51.4769, lng: 0.0005 }} /> //latitude and longitude used here represent greenwich observatory as this is the prime meridian of global time
           ))}
         </GoogleMap>
       )}
@@ -36,6 +39,6 @@ const Map = () => {
       
   };
   
-  export default App;
+  export default Map;
 
   
