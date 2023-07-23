@@ -1,9 +1,11 @@
 .App {
-    height: 100vh;
+    height: 85vh;
     width: 100vw;
+    position:absolute;
+    bottom: 0px;
   }
   
   .map-container {
-    height: 80%;
+    height: 100%;
     width: 100%;
   }

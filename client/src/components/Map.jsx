@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react'
-import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
+import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
+
 import './map.css'
 
 const Map = () => {
@@ -26,7 +27,7 @@ const Map = () => {
           <GoogleMap
             mapContainerClassName="map-container"
             center={center}
-            zoom={50}
+            zoom={5}
             onLoad={onLoad}>
           {markers.map(({ lat, lng }) => (
           <Marker position={{ lat: 51.4769, lng: 0.0005 }} /> //latitude and longitude used here represent greenwich observatory as this is the prime meridian of global time
