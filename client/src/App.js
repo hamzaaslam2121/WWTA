@@ -9,20 +9,20 @@ import styled from 'styled-components';
 import { Loader } from "@googlemaps/js-api-loader"
 
 
-const Wrapper = styled.main`
-  width: 100%;
-  height: 100%;
-`;
-
-
-
 
 const App = () => {
 
 	return (   
-      <Map>
+    <div className='App'>
+			<header className='App-header'>
+				<h1 style={{textAlign: 'center', fontSize:36, fontFamily: "Roboto", paddingTop:'4px', color:'black' }}>World Wide Travel Advisor</h1>
+			</header>
+    <div className='map-container' style={{ height: '94vh', width: '100%' }}>
+      <Outlet/>
+      <Map/>
+     </div>
 
-      </Map>
+    </div>
 	)
 }
 

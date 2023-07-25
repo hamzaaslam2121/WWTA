@@ -1,5 +1,5 @@
 .App {
-    height: 85vh;
+    height: 100vh;
     width: 100vw;
     position:absolute;
     bottom: 0px;
@@ -8,4 +8,5 @@
   .map-container {
     height: 100%;
     width: 100%;
+    position: absolute;
   }

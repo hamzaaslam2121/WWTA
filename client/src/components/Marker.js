@@ -1,38 +1,69 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
 
-const Wrapper = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 18px;
-  height: 18px;
-  background-color: #000;
-  border: 2px solid #fff;
-  border-radius: 100%;
-  user-select: none;
-  transform: translate(-50%, -50%);
-  cursor: ${(props) => (props.onClick ? 'pointer' : 'default')};
-  &:hover {
-    z-index: 1;
-  }
-`;
+import React, {useState} from 'react'
+import styled from 'styled-components'
+import {OverlayTrigger, Popover} from 'react-bootstrap'
 
-const Marker = ({ text, onClick }) => (
-  <Wrapper
-    alt={text}
-    onClick={onClick}
-  />
-);
+const MarkerDiv =	styled.div`
+	touch-action: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 14px;
+	height: 14px;
+	opacity: ${(props) => (props.verified ? 1.0 : 0.4)};
+	background-color: ${(props) => (props.verified ? 'var(--bs-primary)' : 'var(--bs-secondary)')};
+	border: 2px solid #fff;
+	border-radius: 100%;
+	user-select: none;
+	transform: translate(-50%, -50%);
+	cursor: ${(props) => (props.onMouseOver ? 'pointer' : 'default')};
+	&:hover {
+		z-index: 1;
+	}`
 
-Marker.defaultProps = {
-  onClick: null,
-};
+const Marker = ({post}) => {
+	const [showPopover, setShowPopover] = useState(false)
+	const dateString = new Date(post.date).toLocaleDateString()
+	const postUrl = new URL(post.url)
+	const postBaseUrl = postUrl.origin
+	const postDomain = postUrl.hostname.replace('www.', '')
 
-Marker.propTypes = {
-  onClick: PropTypes.func,
-  text: PropTypes.string.isRequired,
-};
+	const renderPopup = (props) => (
+		<Popover className='bg-dark bg-opacity-75'
+		         onMouseEnter={() => setShowPopover(true)}
+		         onMouseLeave={() => setShowPopover(false)}
+		         onPointerDown={() => setShowPopover(true)}
+		         {...props}>
+			<Popover.Body>
+				<div>
+					<span>
+						<a style={{ fontWeight: 'bold', fontSize: '18px', color: 'white' }}
+						   href={post.url}
+						   target='_blank' rel='noopener'>
+							{post.title}
+						</a>
+					</span><br/>
+					<span style={{ color:'white', fontStyle: 'italic' }}>
+						By <a style={{ color: 'white' }} href={postBaseUrl} target='_blank' rel='noopener'>{postDomain}</a>
+					</span><br/>
+					<span style={{ color: 'white' }}>Added on {dateString}</span>
+				</div>
+			</Popover.Body>
+		</Popover>
+	)
 
-export default Marker;
+	return (
+		<OverlayTrigger trigger={['hover', 'focus']}
+		                placement='auto'
+		                overlay={renderPopup}
+		                show={showPopover}
+		                style={{ touchAction:'none' }}>
+			<MarkerDiv verified={post.verified}
+			           className={'marker' + post.id}
+			           onMouseEnter={() => setShowPopover(true)}
+			           onMouseLeave={() => setShowPopover(false)}/>
+		</OverlayTrigger>
+	)
+}
+
+export default Marker
