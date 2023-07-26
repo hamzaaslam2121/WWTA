@@ -1,6 +1,6 @@
 
 .App {
-	text-align: center;	
+	text-align: center;
 }
 
 .App-header {
@@ -15,6 +15,7 @@
 .App-link {
 	color: #61dafb;
 }
+
 /* cyrillic-ext */
 @font-face {
 	font-family: 'Roboto';

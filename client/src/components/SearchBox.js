@@ -2,7 +2,6 @@
 import {useRef, useEffect, useCallback} from 'react'
 import {Container, FormControl} from 'react-bootstrap'
 
-// This component pillaged from https://stackoverflow.com/a/63279728/7126999 (accessed 2023-01-03)
 const SearchBox = ({maps, onPlaceChanged, placeholder}) => {
 	const input = useRef(null)
 	const searchBox = useRef(null)

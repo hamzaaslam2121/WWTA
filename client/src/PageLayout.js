@@ -5,7 +5,7 @@ const PageLayout = () => {
 	return (
 		<div className='App'>
 			<header className='App-header'>
-				<h1 style={{textAlign: center, fontSize:36, paddingLeft:'8px', color:'white'}}>WWTA </h1>
+				<h1 style={{fontSize:36, paddingLeft:'8px', color:'white'}}>World Wide Travel Advisor</h1>
 			</header>
 			<div style={{ paddingBlockStart: '4px' }}>
 				<Outlet/>
