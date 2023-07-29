@@ -6,6 +6,7 @@ import Marker from './marker'
 import axios from 'axios'
 import useToken from '../utilities/useToken'
 import NewPostModal from './NewPostModal'
+import NewPostMenu from './NewPostMenu'
 
 
 
@@ -61,6 +62,8 @@ function Map(){
         },
         zoom: 5
       };
+
+      
       const handleGoogleApiLoaded = (map, maps) => {
 		setGmap(map)
 	  setGooglemaps(maps)
@@ -98,12 +101,9 @@ function Map(){
 
 	const handlePostMenuDeleteClick = () => {
 		const token = getToken()
-		const headers = {'Authorization': `Bearer ${token}`}
 		axios.delete(
 			process.env.REACT_APP_FLASK_API_URL + '/delete-post/' + menuEditPost,
-			{
-				headers: headers
-			}
+			
 		).then(
 			(response) => {handlePostUpdate()}
 		).catch((error) => {
@@ -115,13 +115,10 @@ function Map(){
 
 	const handlePostMenuVerifyClick = () => {
 		const token = getToken()
-		const headers = {'Authorization': `Bearer ${token}`}
 		axios.patch(
 			process.env.REACT_APP_FLASK_API_URL + '/verify-post/' + menuEditPost,
 			null,
-			{
-				headers: headers
-			}
+		
 		).then(
 			(response) => {handlePostUpdate()}
 		).catch((error) => {
@@ -168,7 +165,7 @@ function Map(){
 			</div>
 			<div style={{zIndex:'1'}} className='position-absolute w-100 h-100'>
             <GoogleMapReact 
-                style={{position:'absolute', height:'100%', width:'100%'}}					
+                style={{position:'absolute', height:'92%', width:'100%'}}					
                 data-testid='google-map-react'
                 bootstrapURLKeys={{ key: "AIzaSyB_gADBq2dJuxcRKDwv8_N1b7CAFaQ5IY8",
                 libraries:'places'
@@ -180,7 +177,16 @@ function Map(){
 					onGoogleApiLoaded={({map, maps}) => handleGoogleApiLoaded(map, maps)}
                     onChange = {({center, zoom, bounds, ...other}) => {setMenuState(false)}}
 					onClick={() => {setMenuState(false)}}>
-                        
+                    <NewPostMenu pinsRef = {pinsRef}
+                    state={menuState}
+					             edit={menuEditPost}
+					             postVerified={menuPostVerified}
+					             handleEditClick={handlePostMenuEditClick}
+					             handleDeleteClick={handlePostMenuDeleteClick}
+					             handleVerifyClick={handlePostMenuVerifyClick}
+					             lat={menuPosition.lat}
+					             lng={menuPosition.lng}/>
+
 					<NewPostModal modalShow={modalShow}
 					              postId={menuEditPost}
 					              initLat={menuPosition.lat}

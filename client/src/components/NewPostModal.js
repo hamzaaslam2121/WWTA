@@ -38,7 +38,7 @@ const NewPostModal = ({modalShow, postId, initLat, initLng, handlePostUpdate}) =
 
 	const defaultPost = {
 		title: '',
-		
+		url: 'google.co.uk',
 		latitude: initLat,
 		longitude: initLng,
 	}
@@ -97,13 +97,14 @@ const NewPostModal = ({modalShow, postId, initLat, initLng, handlePostUpdate}) =
   }
 
 	const handleSubmit = (event) => {
-		
+        setFormDisabled(true)
+
 				axios.post(
 						process.env.REACT_APP_FLASK_API_URL + "/add-post",
 						{
 							update_id: postId,
 							title: title,
-
+                            url: url,
 							latitude: latitude,
 							longitude: longitude
 						},
