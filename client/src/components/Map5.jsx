@@ -10,8 +10,6 @@ import NewPostMenu from './NewPostMenu'
 
 
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
-
 const getWidth = () => {
     return Math.max(
       document.body.scrollWidth,
@@ -53,7 +51,6 @@ function Map(){
 	const [menuPostVerified, setMenuPostVerified] = useState(false)
 	const [menuPosition, setMenuPosition] = useState({lat: 20.0, lng: 10.0})
 	const [modalShow, setModalShow] = useState(0)
-    const {setToken, getToken, removeToken} = useToken()
 
 	const defaultProps = {
         center: {
@@ -100,7 +97,6 @@ function Map(){
 	}
 
 	const handlePostMenuDeleteClick = () => {
-		const token = getToken()
 		axios.delete(
 			process.env.REACT_APP_FLASK_API_URL + '/delete-post/' + menuEditPost,
 			
@@ -114,7 +110,6 @@ function Map(){
 	}
 
 	const handlePostMenuVerifyClick = () => {
-		const token = getToken()
 		axios.patch(
 			process.env.REACT_APP_FLASK_API_URL + '/verify-post/' + menuEditPost,
 			null,
@@ -148,6 +143,8 @@ function Map(){
 		)
 	}   
 
+
+
 	const intersect = (first = [], ...rest) => {
    rest = rest.map(array => new Set(array))
    return first.filter(e => rest.every(set => set.has(e)))
@@ -177,8 +174,7 @@ function Map(){
 					onGoogleApiLoaded={({map, maps}) => handleGoogleApiLoaded(map, maps)}
                     onChange = {({center, zoom, bounds, ...other}) => {setMenuState(false)}}
 					onClick={() => {setMenuState(false)}}>
-                    <NewPostMenu pinsRef = {pinsRef}
-                    state={menuState}
+                    <NewPostMenu state={menuState}
 					             edit={menuEditPost}
 					             postVerified={menuPostVerified}
 					             handleEditClick={handlePostMenuEditClick}

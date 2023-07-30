@@ -17,6 +17,7 @@ import {
 } from 'react-bootstrap'
 import axios from 'axios'
 import useToken from '../utilities/useToken'
+import {Language} from '../utilities/enums'
 
 const NewPostModal = ({modalShow, postId, initLat, initLng, handlePostUpdate}) => {
 	const [show, setShow] = useState(false)
@@ -39,6 +40,7 @@ const NewPostModal = ({modalShow, postId, initLat, initLng, handlePostUpdate}) =
 	const defaultPost = {
 		title: '',
 		url: 'google.co.uk',
+        language: Language.EN,
 		latitude: initLat,
 		longitude: initLng,
 	}
