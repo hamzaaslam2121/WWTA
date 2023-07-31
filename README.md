@@ -5,6 +5,7 @@ The WWTA is an interactive map of our precious Earth in which it's inhabitants a
 * Backend: Flask
 * Frontend: React
 * Database: PostgreSQL hosted on Supabase
+* Deployment: I plan to use Docker to deploy my application
 
 ## Contributing
 Don't hesitate to e-mail or PM me with requests, queries and suggestions. If you would like to work on the frontend design, to make something more visually appealing, or to develop an alternative frontend for mobile using React Native, please get in touch!
